@@ -12,7 +12,7 @@ public class Homework3 {
     final static double fieldWidthMeters = convertMeters(fieldWidthInches);
     final static double halfWidthMeters = fieldWidthMeters / 2;
     final static double halfLenghtMeters = fieldLenghtMeters / 2;
-    final static String helpMessage = "Help Message: If you want to mirror only X pose, use the command mirrorX or flipX. Similarly, if you want to mirror only Y pose, use the command mirrorY or flipY. If you want to mirror everything in accordance with a standard alliance switch for Rebuilt, use the command mirror. Example Usage: ExampleCommandName xPose yPose headingRadians. Poses are in meters; headings are entered in radians and returned in degrees. If you want to get the alliance, use getAlliance or alliance. Example usage: alliance xPose yPose. Same usage with getQuadrant.";
+    final static String helpMessage = "Help Message: If you want to mirror only X pose, use the command mirrorX or flipX.\n Similarly, if you want to mirror only Y pose, use the command mirrorY or flipY.\n If you want to mirror everything in accordance with a standard alliance switch for Rebuilt, use the command mirror.\n Example Usage: ExampleCommandName xPose yPose headingRadians.\n Poses are in meters; headings are entered in radians and returned in degrees.\n If you want to get the alliance, use getAlliance or alliance.\n Example usage: alliance xPose yPose. Same usage with getQuadrant.";
 
     public static void main(String[] args) {
         if (args.length == 0) {
@@ -43,14 +43,14 @@ public class Homework3 {
         if (x >= halfLenghtMeters && y >= halfWidthMeters) {
             quadrant = "upper right";
         } else if (x >= halfLenghtMeters && y < halfWidthMeters) {
-            quadrant = "lower left";
-        } else if (x < halfLenghtMeters && y < halfWidthMeters) {
             quadrant = "lower right";
+        } else if (x < halfLenghtMeters && y < halfWidthMeters) {
+            quadrant = "lower left";
         } else if (x < halfLenghtMeters && y >= halfWidthMeters) {
             quadrant = "upper left";
         } else {
             throw new IllegalArgumentException(
-                    "x and y must be real numbers (got x=" + x + ", y=" + y + ")");
+                    "Enter x and y params or robot is sad :(");
         }
         return quadrant;
     }
@@ -67,7 +67,7 @@ public class Homework3 {
     public static String mirrorXOnly(double x, double y, float heading) {
         double xMirrored = fieldLenghtMeters - x;
         float headingMirrored = 180 - heading;
-        String ans = "Your new pose is " + xMirrored + ", " + y + ". Your new heading is " + headingMirrored;
+        String ans = "Your new pose is " + xMirrored + ", " + y + ".\n Your new heading is " + headingMirrored;
         return ans;
     }
 
@@ -75,14 +75,14 @@ public class Homework3 {
         double xMirrored = fieldLenghtMeters - x;
         double yMirrored = fieldWidthMeters - y;
         float headingMirrored = heading - 180;
-        String ans = "Your new pose is " + xMirrored + ", " + yMirrored + ". Your new heading is " + headingMirrored;
+        String ans = "Your new pose is " + xMirrored + ", " + yMirrored + ".\n Your new heading is " + headingMirrored;
         return ans;
     }
 
     public static String mirrorYOnly(double x, double y, float heading) {
         double yMirrored = fieldWidthMeters - y;
         float headingMirrored = -heading;
-        String ans = "Your new pose is " + x + ", " + yMirrored + ". Your new heading is " + headingMirrored;
+        String ans = "Your new pose is " + x + ", " + yMirrored + ".\n Your new heading is " + headingMirrored;
         return ans;
     }
 
@@ -106,7 +106,7 @@ public class Homework3 {
             return helpMessage;
         } else {
             throw new IllegalArgumentException(
-                    "If you are confused about how to use, please type --help or help in the terminal :)");
+                    "If you are confused about how to use\n please type --help or help in the terminal :)");
         }
     }
 }
