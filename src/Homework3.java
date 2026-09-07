@@ -6,13 +6,21 @@ AT CS
 */
 
 public class Homework3 {
-    final static double fieldLenghtInches = 651.22;
+    final static double fieldlengthInches = 651.22;
     final static double fieldWidthInches = 317.69;
-    final static double fieldLenghtMeters = convertMeters(fieldLenghtInches);
+    final static double fieldlengthMeters = convertMeters(fieldlengthInches);
     final static double fieldWidthMeters = convertMeters(fieldWidthInches);
     final static double halfWidthMeters = fieldWidthMeters / 2;
-    final static double halfLenghtMeters = fieldLenghtMeters / 2;
-    final static String helpMessage = "Help Message: If you want to mirror only X pose, use the command mirrorX or flipX.\n Similarly, if you want to mirror only Y pose, use the command mirrorY or flipY.\n If you want to mirror everything in accordance with a standard alliance switch for Rebuilt, use the command mirror.\n Example Usage: ExampleCommandName xPose yPose headingRadians.\n Poses are in meters; headings are entered in radians and returned in degrees.\n If you want to get the alliance, use getAlliance or alliance.\n Example usage: alliance xPose yPose. Same usage with getQuadrant.";
+    final static double halflengthMeters = fieldlengthMeters / 2;
+    final static String helpMessage =
+        "Help Message: If you want to mirror only X pose, use the command mirrorX or flipX.\n" +
+        " Similarly, if you want to mirror only Y pose, use the command mirrorY or flipY.\n" +
+        " If you want to mirror everything in accordance with a standard alliance" +
+        " switch for Rebuilt, use the command mirror.\n" +
+        " Example Usage: ExampleCommandName xPose yPose headingRadians.\n" +
+        " Poses are in meters; headings are entered in radians and returned in degrees.\n" +
+        " If you want to get the alliance, use getalliance or alliance.\n" +
+        " Example usage: alliance xPose yPose. Same usage with getQuadrant.";
     final static String fieldParamsMessage = "Value exceeds field parameters";
 
     public static void main(String[] args) {
@@ -28,14 +36,16 @@ public class Homework3 {
         String yPose = args[2];
         String headingRadians = args[3];
         double x = Double.parseDouble(xPose);
-        if (x < 0 || x > fieldLenghtMeters) {
+        if (x < 0 || x > fieldlengthMeters) {
             throw new IllegalArgumentException(fieldParamsMessage);
         }
         double y = Double.parseDouble(yPose);
         if (y < 0 || y > fieldWidthMeters) {
             throw new IllegalArgumentException(fieldParamsMessage);
         }
-        double headingRadsDouble = Double.parseDouble(headingRadians);      // The heading is passed in in radians because in practice the coords would be used for complicated math which requires radians to be passed in instead of degrees.
+        // The heading is passed in in radians because in practice the coords would be used for
+        //complicated math which requires radians to be passed in instead of degrees.
+        double headingRadsDouble = Double.parseDouble(headingRadians);
         float headingDegrees = (float) (Math.toDegrees(headingRadsDouble));
         System.out.println(action(action, x, y, headingDegrees));
     }
@@ -47,13 +57,13 @@ public class Homework3 {
 
     public static String getFieldQuadrant(double x, double y) {
         String quadrant = null;
-        if (x >= halfLenghtMeters && y >= halfWidthMeters) {
+        if (x >= halflengthMeters && y >= halfWidthMeters) {
             quadrant = "upper right";
-        } else if (x >= halfLenghtMeters && y < halfWidthMeters) {
+        } else if (x >= halflengthMeters && y < halfWidthMeters) {
             quadrant = "lower right";
-        } else if (x < halfLenghtMeters && y < halfWidthMeters) {
+        } else if (x < halflengthMeters && y < halfWidthMeters) {
             quadrant = "lower left";
-        } else if (x < halfLenghtMeters && y >= halfWidthMeters) {
+        } else if (x < halflengthMeters && y >= halfWidthMeters) {
             quadrant = "upper left";
         } else {
             throw new IllegalArgumentException(
@@ -62,34 +72,37 @@ public class Homework3 {
         return quadrant;
     }
 
-    public static String getAlliance(double x, double y) {
+    public static String getalliance(double x, double y) {
         String quad = getFieldQuadrant(x, y);
-        String Alliance = "blue";
+        String alliance = "blue";
         if (quad.equalsIgnoreCase("Upper Right") || quad.equalsIgnoreCase("Lower Right")) {
-            Alliance = "red";
+            alliance = "red";
         }
-        return Alliance;
+        return alliance;
     }
 
     public static String mirrorXOnly(double x, double y, float heading) {
-        double xMirrored = fieldLenghtMeters - x;
+        double xMirrored = fieldlengthMeters - x;
         float headingMirrored = 180 - heading;
-        String ans = "Your new pose is " + xMirrored + ", " + y + ".\n Your new heading is " + headingMirrored;
+        String ans = "Your new pose is " + xMirrored + ", " + y
+                + ".\n Your new heading is " + headingMirrored;
         return ans;
     }
 
     public static String mirrorStandard(double x, double y, float heading) {
-        double xMirrored = fieldLenghtMeters - x;
+        double xMirrored = fieldlengthMeters - x;
         double yMirrored = fieldWidthMeters - y;
         float headingMirrored = heading - 180;
-        String ans = "Your new pose is " + xMirrored + ", " + yMirrored + ".\n Your new heading is " + headingMirrored;
+        String ans = "Your new pose is " + xMirrored + ", " + yMirrored
+                + ".\n Your new heading is " + headingMirrored;
         return ans;
     }
 
     public static String mirrorYOnly(double x, double y, float heading) {
         double yMirrored = fieldWidthMeters - y;
         float headingMirrored = -heading;
-        String ans = "Your new pose is " + x + ", " + yMirrored + ".\n Your new heading is " + headingMirrored;
+        String ans = "Your new pose is " + x + ", " + yMirrored
+                + ".\n Your new heading is " + headingMirrored;
         return ans;
     }
 
@@ -103,8 +116,8 @@ public class Homework3 {
         } else if (action.equalsIgnoreCase("mirror")) {
             String ans = mirrorStandard(x, y, heading);
             return ans;
-        } else if (action.equalsIgnoreCase("getAlliance") || action.equalsIgnoreCase("alliance")) {
-            String ans = getAlliance(x, y);
+        } else if (action.equalsIgnoreCase("getalliance") || action.equalsIgnoreCase("alliance")) {
+            String ans = getalliance(x, y);
             return ans;
         } else if (action.equalsIgnoreCase("getQuadrant")) {
             String ans = getFieldQuadrant(x, y);
@@ -113,7 +126,8 @@ public class Homework3 {
             return helpMessage;
         } else {
             throw new IllegalArgumentException(
-                    "If you are confused about how to use\n please type --help or help in the terminal :)");
+                    "If you are confused about how to use\n"
+                            + " please type --help or help in the terminal :)");
         }
     }
 }
