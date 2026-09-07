@@ -95,7 +95,7 @@ public class Homework3 {
             return ans;
         }
         if (action.equalsIgnoreCase("--help") || action.equals("help")) {
-            String help = "If you want to mirror only X pose, use the command mirrorX or flipX. Similarlly, if you want to mirror only Y pose, use the command mirrorY or flipY.\nIf you want to mirror everything in accordance with a standard alliance switch for Rebuilt, use the command mirror.\n Exampler Usage: ExampleCommandName xPose yPose headingRadians.\n If you want to get the alliance, use getAlliance or alliance.\n Example usage: alliance xPose yPose. Same usage with getQuadrant.";
+            String help = "If you want to mirror only X pose, use the command mirrorX or flipX. Similarlly, if you want to mirror only Y pose, use the command mirrorY or flipY.\nIf you want to mirror everything in accordance with a standard alliance switch for Rebuilt, use the command mirror.\n Example Usage: ExampleCommandName xPose yPose headingRadians.\n If you want to get the alliance, use getAlliance or alliance.\n Example usage: alliance xPose yPose. Same usage with getQuadrant.";
             return help;
         }
         else {
