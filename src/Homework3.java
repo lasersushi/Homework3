@@ -53,7 +53,7 @@ public class Homework3 {
         return Alliance;
     }
     public static String mirrorXOnly(double x, double y, float heading) {
-        double xMirrored = fieldLenghtInches - x;
+        double xMirrored = fieldLenghtMeters - x;
         float headingMirrored = 180 - heading;
         String ans = "Your new pose is " + xMirrored + "," + y + ". Your new heading is" + headingMirrored;
         return ans;
