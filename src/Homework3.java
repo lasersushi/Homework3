@@ -21,6 +21,7 @@ public class Homework3 {
         double y = Double.parseDouble(yPose);
         double headingRadsDouble = Double.parseDouble(headingRadians);
         float headingDegrees = (float)(Math.toDegrees(headingRadsDouble));
+        System.out.println(action(action, x, y, headingDegrees));
     }
     public static double convertMeters(double a) {
         double ans = a * 0.0254;
@@ -71,5 +72,34 @@ public class Homework3 {
         float headingMirrored = -heading;
         String ans = "Your new pose is " + x + "," + yMirrored + ". Your new heading is" + headingMirrored;
         return ans;
+    }
+    public static String action(String action, double x, double y, float heading) {
+        if (action.equalsIgnoreCase("mirrorX") || action.equalsIgnoreCase("flipX")) {
+            String ans = mirrorXOnly(x,y,heading);
+            return ans;
+        }
+        if (action.equalsIgnoreCase("mirrorY") || action.equalsIgnoreCase("flipY")) {
+            String ans = mirrorYOnly(x,y,heading);
+            return ans;
+        }
+        if (action.equalsIgnoreCase("mirror")) {
+            String ans = mirrorStandard(x, y, heading);
+            return ans;
+        }
+        if (action.equalsIgnoreCase("getAlliance") || action.equalsIgnoreCase("alliance")) {
+            String ans = getAlliance(x, y);
+            return ans;
+        }
+        if (action.equalsIgnoreCase("getQuadrant")) {
+            String ans = getFieldQuadrant(x,y);
+            return ans;
+        }
+        if (action.equalsIgnoreCase("--help") || action.equals("help")) {
+            String help = "If you want to mirror only X pose, use the command mirrorX or flipX. Similarlly, if you want to mirror only Y pose, use the command mirrorY or flipY.\nIf you want to mirror everything in accordance with a standard alliance switch for Rebuilt, use the command mirror.\n Exampler Usage: ExampleCommandName xPose yPose headingRadians.\n If you want to get the alliance, use getAlliance or alliance.\n Example usage: alliance xPose yPose. Same usage with getQuadrant.";
+            return help;
+        }
+        else {
+            throw new IllegalArgumentException("If you are confused about how to use, please type --help or help in the terminal");
+        }
     }
 }
