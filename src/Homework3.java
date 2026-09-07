@@ -20,7 +20,6 @@ public class Homework3 {
         double y = Double.parseDouble(yPose);
         double headingRadsDouble = Double.parseDouble(headingRadians);
         double headingDegrees = Math.toDegrees(headingRadsDouble);
-        final String quadrant = getFieldQuadrant(x, y);
     }
     public static double convertMeters(double a) {
         double ans = a * 0.0254;
