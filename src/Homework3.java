@@ -28,7 +28,7 @@ public class Homework3 {
         String headingRadians = args[3];
         double x = Double.parseDouble(xPose);
         double y = Double.parseDouble(yPose);
-        double headingRadsDouble = Double.parseDouble(headingRadians);
+        double headingRadsDouble = Double.parseDouble(headingRadians);      // The heading is passed in in radians because in practice the coords would be used for complicated math which requires radians to be passed in instead of degrees.
         float headingDegrees = (float) (Math.toDegrees(headingRadsDouble));
         System.out.println(action(action, x, y, headingDegrees));
     }
