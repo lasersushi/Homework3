@@ -19,7 +19,7 @@ public class Homework3 {
         double x = Double.parseDouble(xPose);
         double y = Double.parseDouble(yPose);
         double headingRadsDouble = Double.parseDouble(headingRadians);
-        double headingDegrees = Math.toDegrees(headingRadsDouble);
+        float headingDegrees = (float)(Math.toDegrees(headingRadsDouble));
     }
     public static double convertMeters(double a) {
         double ans = a * 0.0254;
@@ -28,20 +28,28 @@ public class Homework3 {
     public static String getFieldQuadrant(double x, double y){
         String quadrant = null;
         if (x > halfLenghtMeters && y > halfWidthMeters) {
-            quadrant = "Upper Right";
+            quadrant = "upper right";
         }
         else if (x > halfLenghtMeters && y < halfWidthMeters) {
-            quadrant = "Lower Left";
+            quadrant = "lower left";
         }
         else if (x < halfLenghtMeters && y < halfWidthMeters) {
-            quadrant = "Lower Right";
+            quadrant = "lower right";
         }
         else if (x < halfLenghtMeters && y > halfWidthMeters) {
-            quadrant = "Upper Left";
+            quadrant = "upper left";
         }
         else {
-            throw new IllegalArgumentException("You have to input X and Y or else robot is sad :( ");
+            throw new IllegalArgumentException("you have to input X and Y or else robot sad :( ");
         }
         return quadrant;
+    }
+    public static String getAlliance(double x, double y){
+        String quad = getFieldQuadrant(x, y);
+        String Alliance = "blue";
+        if (quad.equals("Upper Right") ||. quad.equals("Lower Right")) {
+            Alliance = "red";
+        }
+        return Alliance;
     }
 }
