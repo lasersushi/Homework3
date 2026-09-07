@@ -47,7 +47,7 @@ public class Homework3 {
     public static String getAlliance(double x, double y){
         String quad = getFieldQuadrant(x, y);
         String Alliance = "blue";
-        if (quad.equals("Upper Right") ||. quad.equals("Lower Right")) {
+        if (quad.equals("Upper Right") || quad.equals("Lower Right")) {
             Alliance = "red";
         }
         return Alliance;
