@@ -12,8 +12,16 @@ public class Homework3 {
     final static double fieldWidthMeters = convertMeters(fieldWidthInches);
     final static double halfWidthMeters = fieldWidthMeters/2;
     final static double halfLenghtMeters = fieldLenghtMeters/2;
+    final static String helpMessage = "Help Message: If you want to mirror only X pose, use the command mirrorX or flipX. Similarlly, if you want to mirror only Y pose, use the command mirrorY or flipY. If you want to mirror everything in accordance with a standard alliance switch for Rebuilt, use the command mirror. Example Usage: ExampleCommandName xPose yPose headingRadians. If you want to get the alliance, use getAlliance or alliance. Example usage: alliance xPose yPose. Same usage with getQuadrant.";
     public static void main(String[]args) {
+        if (args.length == 0) {
+            throw new IllegalArgumentException(helpMessage);
+        }
         String action = args[0];
+        if (action.equalsIgnoreCase("--help") || action.equals("help")) {
+            System.out.println(helpMessage);
+            return;
+        }
         String xPose = args[1];
         String yPose = args[2];
         String headingRadians = args[3];
@@ -78,25 +86,24 @@ public class Homework3 {
             String ans = mirrorXOnly(x,y,heading);
             return ans;
         }
-        if (action.equalsIgnoreCase("mirrorY") || action.equalsIgnoreCase("flipY")) {
+        else if (action.equalsIgnoreCase("mirrorY") || action.equalsIgnoreCase("flipY")) {
             String ans = mirrorYOnly(x,y,heading);
             return ans;
         }
-        if (action.equalsIgnoreCase("mirror")) {
+        else if (action.equalsIgnoreCase("mirror")) {
             String ans = mirrorStandard(x, y, heading);
             return ans;
         }
-        if (action.equalsIgnoreCase("getAlliance") || action.equalsIgnoreCase("alliance")) {
+        else if (action.equalsIgnoreCase("getAlliance") || action.equalsIgnoreCase("alliance")) {
             String ans = getAlliance(x, y);
             return ans;
         }
-        if (action.equalsIgnoreCase("getQuadrant")) {
+        else if (action.equalsIgnoreCase("getQuadrant")) {
             String ans = getFieldQuadrant(x,y);
             return ans;
         }
-        if (action.equalsIgnoreCase("--help") || action.equals("help")) {
-            String help = "If you want to mirror only X pose, use the command mirrorX or flipX. Similarlly, if you want to mirror only Y pose, use the command mirrorY or flipY. If you want to mirror everything in accordance with a standard alliance switch for Rebuilt, use the command mirror. Example Usage: ExampleCommandName xPose yPose headingRadians. If you want to get the alliance, use getAlliance or alliance. Example usage: alliance xPose yPose. Same usage with getQuadrant.";
-            return help;
+        else if (action.equalsIgnoreCase("--help") || action.equals("help")) {
+            return helpMessage;
         }
         else {
             throw new IllegalArgumentException("If you are confused about how to use, please type --help or help in the terminal :)");
