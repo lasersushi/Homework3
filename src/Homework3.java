@@ -20,28 +20,29 @@ public class Homework3 {
         double y = Double.parseDouble(yPose);
         double headingRadsDouble = Double.parseDouble(headingRadians);
         double headingDegrees = Math.toDegrees(headingRadsDouble);
-        final String quadrant = 
+        final String quadrant = getFieldQuadrant(x, y);
     }
     public static double convertMeters(double a) {
         double ans = a * 0.0254;
         return ans;
     }
     public static String getFieldQuadrant(double x, double y){
-        boolean upperLeft = false;
-        boolean lowerLeft = false;
-        boolean upperRight = false;
-        boolean lowerRight = false;
+        String quadrant = null;
         if (x > halfLenghtMeters && y > halfWidthMeters) {
-            upperRight = true;
+            quadrant = "Upper Right";
         }
         else if (x > halfLenghtMeters && y < halfWidthMeters) {
-            lowerLeft = true;
+            quadrant = "Lower Left";
         }
         else if (x < halfLenghtMeters && y < halfWidthMeters) {
-            lowerRight = true;
+            quadrant = "Lower Right";
         }
         else if (x < halfLenghtMeters && y > halfWidthMeters) {
-            upperLeft = true;
+            quadrant = "Upper Left";
         }
+        else {
+            throw new IllegalArgumentException("You have to input X and Y or else robot is sad :( ");
+        }
+        return quadrant;
     }
 }
