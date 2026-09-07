@@ -42,7 +42,7 @@ public class Homework3 {
             quadrant = "upper left";
         }
         else {
-            throw new IllegalArgumentException("you have to input X and Y or else robot sad :( ");
+            throw new IllegalArgumentException("Either you didn't input your x and y or your pose is between quadrants");
         }
         return quadrant;
     }
