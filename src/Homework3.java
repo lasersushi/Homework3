@@ -13,9 +13,10 @@ public class Homework3 {
     final static double halfWidthMeters = fieldWidthMeters/2;
     final static double halfLenghtMeters = fieldLenghtMeters/2;
     public static void main(String[]args) {
-        String xPose = args[0];
-        String yPose = args[1];
-        String headingRadians = args[2];
+        String action = args[0];
+        String xPose = args[1];
+        String yPose = args[2];
+        String headingRadians = args[3];
         double x = Double.parseDouble(xPose);
         double y = Double.parseDouble(yPose);
         double headingRadsDouble = Double.parseDouble(headingRadians);
@@ -64,6 +65,11 @@ public class Homework3 {
         float headingMirrored = heading - 180;
         String ans = "Your new pose is " + xMirrored + "," + yMirrored + ". Your new heading is" + headingMirrored;
         return ans;
-        
+    }
+    public static String mirrorYOnly(double x, double y, float heading) {
+        double yMirrored = fieldWidthMeters - y;
+        float headingMirrored = -heading;
+        String ans = "Your new pose is " + x + "," + yMirrored + ". Your new heading is" + headingMirrored;
+        return ans;
     }
 }
