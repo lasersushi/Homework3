@@ -13,6 +13,7 @@ public class Homework3 {
     final static double halfWidthMeters = fieldWidthMeters / 2;
     final static double halfLenghtMeters = fieldLenghtMeters / 2;
     final static String helpMessage = "Help Message: If you want to mirror only X pose, use the command mirrorX or flipX.\n Similarly, if you want to mirror only Y pose, use the command mirrorY or flipY.\n If you want to mirror everything in accordance with a standard alliance switch for Rebuilt, use the command mirror.\n Example Usage: ExampleCommandName xPose yPose headingRadians.\n Poses are in meters; headings are entered in radians and returned in degrees.\n If you want to get the alliance, use getAlliance or alliance.\n Example usage: alliance xPose yPose. Same usage with getQuadrant.";
+    final static String fieldParamsMessage = "Value exceeds field parameters";
 
     public static void main(String[] args) {
         if (args.length == 0) {
@@ -27,7 +28,13 @@ public class Homework3 {
         String yPose = args[2];
         String headingRadians = args[3];
         double x = Double.parseDouble(xPose);
+        if (x < 0 || x > fieldLenghtMeters) {
+            throw new IllegalArgumentException(fieldParamsMessage);
+        }
         double y = Double.parseDouble(yPose);
+        if (y < 0 || y > fieldWidthMeters) {
+            throw new IllegalArgumentException(fieldParamsMessage);
+        }
         double headingRadsDouble = Double.parseDouble(headingRadians);      // The heading is passed in in radians because in practice the coords would be used for complicated math which requires radians to be passed in instead of degrees.
         float headingDegrees = (float) (Math.toDegrees(headingRadsDouble));
         System.out.println(action(action, x, y, headingDegrees));
