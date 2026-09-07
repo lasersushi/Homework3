@@ -99,7 +99,7 @@ public class Homework3 {
             return help;
         }
         else {
-            throw new IllegalArgumentException("If you are confused about how to use, please type --help or help in the terminal");
+            throw new IllegalArgumentException("If you are confused about how to use, please type --help or help in the terminal :)");
         }
     }
 }
