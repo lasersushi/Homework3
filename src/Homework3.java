@@ -58,4 +58,12 @@ public class Homework3 {
         String ans = "Your new pose is " + xMirrored + "," + y + ". Your new heading is" + headingMirrored;
         return ans;
     }
+    public static String mirrorStandard(double x, double y, float heading) {
+        double xMirrored = fieldLenghtMeters - x;
+        double yMirrored = fieldWidthMeters - y;
+        float headingMirrored = heading - 180;
+        String ans = "Your new pose is " + xMirrored + "," + yMirrored + ". Your new heading is" + headingMirrored;
+        return ans;
+        
+    }
 }
